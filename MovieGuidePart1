@@ -1,0 +1,47 @@
+  def display_menu():
+    print("Movie Guide Menu")
+    print("1. Display Movie List")
+    print("2. Add Movie")
+    print("3. Delete Movie")
+    print("4. Exit")
+  def display_movie_list(movie_list):
+    if not movie_list:
+        print("Movie list is empty.")
+    else:
+        print("Movie List:")
+        for index, movie in enumerate(movie_list, 1):
+            print(f"{index}. {movie}")
+  def add_movie(movie_list):
+    new_movie = input("Enter movie title to add: ")
+    movie_list.append(new_movie)
+    print(f"{new_movie} added to the list.")
+  def delete_movie(movie_list):
+    try:
+        movie_index = int(input("Enter movie number to delete: ")) - 1
+        if 0 <= movie_index < len(movie_list):
+            deleted_movie = movie_list.pop(movie_index)
+            print(f"{deleted_movie} deleted from the list.")
+        else:
+            print("Invalid movie number.")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+  def main():
+    movie_list = ["Coco", "Moana", "Star Wars"]
+    while True:
+        display_menu()
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            display_movie_list(movie_list)
+        elif choice == "2":
+            add_movie(movie_list)
+            display_movie_list(movie_list)
+        elif choice == "3":
+            delete_movie(movie_list)
+            display_movie_list(movie_list)
+        elif choice == "4":
+            print("Exiting.")
+            break
+        else:
+            print("Not Valid. Please try again.")
+  if __name__ == "__main__":
+    main()
